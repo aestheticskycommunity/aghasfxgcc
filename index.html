@@ -68,4 +68,54 @@ body.dark svg {
   icon.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
 })();
 </script>
+
+<!-- === DISABLE RIGHT CLICK === -->
+<script>
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+</script>
+
+<!-- === FULL PROTECTION PACK === -->
+<script>
+// Disable Right Click
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+// Disable Text Selection
+document.addEventListener("selectstart", e => e.preventDefault());
+
+// Disable Drag (images, elements)
+document.addEventListener("dragstart", e => e.preventDefault());
+
+// Disable Keyboard Shortcuts for Inspect
+document.addEventListener("keydown", function(e) {
+    if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) ||
+        (e.ctrlKey && e.key === "U")
+    ) {
+        e.preventDefault();
+    }
+});
+
+// Optional Anti Screenshot attempt (limited)
+document.addEventListener("keyup", function(e){
+    if (e.key === "PrintScreen") {
+        navigator.clipboard.writeText("Screenshot Disabled");
+        alert("Screenshot is blocked for this page.");
+    }
+});
+
+// Add small invisible watermark
+const wm = document.createElement("div");
+wm.style.position = "fixed";
+wm.style.bottom = "5px";
+wm.style.left = "5px";
+wm.style.opacity = "0.12";
+wm.style.fontSize = "12px";
+wm.style.pointerEvents = "none";
+wm.style.userSelect = "none";
+wm.textContent = "Protected Site";
+document.body.appendChild(wm);
+</script>
 </body></html>
